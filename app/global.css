@@ -2,6 +2,9 @@
 @import 'fumadocs-ui/css/neutral.css';
 @import 'fumadocs-ui/css/preset.css';
 
+/* follow the theme toggle (the `.dark` class), not only the system setting */
+@custom-variant dark (&:where(.dark, .dark *));
+
 html {
   scrollbar-gutter: stable;
 }

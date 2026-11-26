@@ -1,0 +1,5 @@
+{
+  "title": "Leaseting Docs",
+  "description": "How-to guides for property managers and staff using Leaseting.",
+  "pages": ["getting-started", "billing", "tenants"]
+}

@@ -1,0 +1,168 @@
+---
+title: Bill utilities from meter readings
+description: Bill tenants for electricity and water each month. Type the meter readings, set the rate, and Leaseting creates the bills.
+sidebarTitle: Utility bills
+icon: Zap
+---
+
+Every month, each tenant owes their share of the building's electricity (Meralco) and water (Maynilad). You type in the meter readings. Leaseting works out each amount and creates the bills.
+
+## Two ways to bill [#overview]
+
+| Use | When | Where to find it |
+| --- | --- | --- |
+| **Utility run** | Your normal monthly billing. Bills a whole property at once. | **Bills** → **Billing tools** → **Utility run** |
+| **New bill** | One unit only, such as a late reading or a correction. | **Bills** → **New bill** |
+
+Each bill is due on the tenant's own due day, for the amount Leaseting worked out. When SMS is set up, payment reminders go out automatically.
+
+## Bill a whole property this month [#monthly-run]
+
+This is the normal monthly routine. Go to **Bills**, open **Billing tools** and choose **Utility run**. Do one run per property and utility.
+
+<Steps>
+<Step>
+**Pick the property and the utility.** Choose Electricity or Water. Every unit you bill for that utility appears in a table, with last month's reading already filled in under **Previous**.
+</Step>
+<Step>
+**Set the rate.** Enter the provider's total bill for the building, or switch to a fixed price per unit if you have one. The price per kWh or cu.m shows as you type. See [Choose how to price it](#rates).
+</Step>
+<Step>
+**Type each unit's present reading.** Enter today's meter number under **Present**. **Consumed** and **Amount** update beside each row as you type.
+</Step>
+<Step>
+**Leave the dates alone.** They're filled in for you under **Billing period**. Open it only if you need to change the days the bill covers.
+</Step>
+<Step>
+**Check the total.** The bar at the bottom shows how many units will be billed and the total amount.
+</Step>
+<Step>
+**Click Create bills.** The button shows the count, like **Create 12 bills**. Every bill is created at once, each due on its tenant's own due day.
+</Step>
+</Steps>
+
+<Callout type="idea" title="Shortcut: scan the provider's bill">
+Click **Scan bill photo** and take a photo of the Meralco or Maynilad bill. Leaseting reads the rate, totals and dates and fills them in. Always check the numbers before you create the bills. The photo is sent to an AI service to be read.
+</Callout>
+
+Running the same month again is safe. Units already billed are skipped, so nobody is charged twice. Rows with no present reading are skipped too.
+
+## Bill one unit [#single-bill]
+
+For a one-off, like a late reading or a correction, use **Bills** → **New bill** instead of a full run.
+
+<Steps>
+<Step>
+**Pick the lease, then set Type to Electricity or Water.** If Leaseting doesn't bill that utility on the lease, the option is greyed out.
+</Step>
+<Step>
+**Tick Compute from meter reading.** The previous reading and the rate carry over from the unit's last bill.
+</Step>
+<Step>
+**Type the present reading.** The amount is worked out as you type, so you never enter the peso amount yourself. Then click **Create bill**.
+</Step>
+</Steps>
+
+It uses the same formulas as the utility run, one bill at a time.
+
+## How meter readings carry over [#readings]
+
+A meter only counts up. What a unit used is today's number minus last month's:
+
+**Present − Previous = Consumed**
+
+This month's **Present** becomes next month's **Previous** automatically, so you never type it twice.
+
+For example, Unit 101's June bill has a present reading of **520**. When you bill July, **Previous** already shows 520. You type **590** as the present reading, and the unit is billed for **70**.
+
+<Callout title="Billing a property for the first time?">
+There's no earlier bill to carry from, so **Previous** shows 0. Type each meter's real previous and present readings once. From next month, **Previous** fills itself in.
+</Callout>
+
+## Choose how to price it [#rates]
+
+Leaseting needs the price per unit: pesos per kWh for electricity, or per cu.m for water. There are two ways to give it, and you use one at a time. Pick one with the switch at the top of the **Rate** box. You never fill in both.
+
+### From total bill (the default) [#rates-total-bill]
+
+The usual choice. Use it when you have the provider's one bill for the whole building, but not the price per unit. Enter the **Provider bill total** and the **Total consumption**. Leaseting works out the price and splits the bill by how much each unit used.
+
+For example:
+
+- Provider bill: ₱18,000 for 200 cu.m
+- Price: 18,000 ÷ 200 = **₱90.00 per cu.m**
+- A unit that used 24 cu.m: 24 × ₱90.00 = **₱2,160.00**
+
+### Rate per kWh or cu.m [#rates-per-unit]
+
+Use it when you charge a fixed price that you set, whatever the provider's bill says. Enter it under **Rate**.
+
+For example:
+
+- Your rate: ₱13.00 per kWh
+- A unit that used 70 kWh: 70 × ₱13.00 = **₱910.00**
+
+The utility run always opens on **From total bill**. Switch to a rate per unit only when you have a fixed price.
+
+## Admin fee, VAT and withholding tax [#extras]
+
+These are three optional percentages. All of them start at **0**, so leave them alone unless they apply to you. Each one is worked out on the usage charge.
+
+- **Admin fee**: your handling charge, added on top. It's on the main form, next to the rate.
+- **VAT**: sales tax, added on top. Most residential sub-meters leave it at 0.
+- **Withholding tax**: taken off the charge. Leave it at 0 unless you withhold.
+
+VAT and withholding tax are hidden under **Taxes (VAT and withholding), optional**. Click it to show them.
+
+Here's a worked example: 70 kWh at ₱13.00, with a 10% admin fee, 12% VAT and 2% withholding tax.
+
+| Charge | Amount |
+| --- | ---: |
+| Usage charge (70 kWh × ₱13.00) | ₱910.00 |
+| Plus admin fee, 10% | ₱91.00 |
+| Plus VAT, 12% | ₱109.20 |
+| Minus withholding tax, 2% | ₱18.20 |
+| **Tenant pays** | **₱1,092.00** |
+
+With all three at 0%, the tenant pays just the ₱910.00 usage charge.
+
+## The three dates [#dates]
+
+A utility bill has three dates. They're easy to mix up, because each one answers a different question.
+
+| Date | What it means |
+| --- | --- |
+| **Period from → to** | The days the usage covers, for example Jun 18 → Jul 18. **Period to** is the day you read the meters. Both are printed on the tenant's receipt. |
+| **Billing month** | The month the bill belongs to. It starts on this month. You can go back one month, but not forward. |
+| **Due date** | When the tenant must pay. It's set to the tenant's own due day, the same as rent. |
+
+On the utility run, the period dates are filled in for you and tucked under **Billing period**. Most months you never touch them.
+
+## Common mistakes and questions [#faq]
+
+<Accordions>
+<Accordion id="faq-skipped" title='A row says "skipped". Why?'>
+Its present reading is blank, or the unit was already billed for this month. Skipped rows are never charged. To include a row, type its present reading.
+</Accordion>
+<Accordion id="faq-missing-unit" title="A unit is missing from the run">
+Its lease is set so that Leaseting doesn't bill that utility, for example because the tenant pays the provider directly. Open the lease and change it under **Utility billing**. New leases take the property's defaults, which you set when you edit the property. Until the lease bills that utility, a single bill for it is refused too.
+</Accordion>
+<Accordion id="faq-below-previous" title='It warns "below previous"'>
+The present reading is smaller than the previous one, and a meter can't count down. Check the number again. It's almost always a typo.
+</Accordion>
+<Accordion id="faq-previous-zero" title="Previous shows 0">
+There's no earlier bill to carry from, so this is the first time the unit is billed for this utility. Type the real previous reading once. Next month it carries over on its own.
+</Accordion>
+<Accordion id="faq-ran-twice" title="I ran the same month twice by accident">
+No harm done. Units already billed are skipped, so nobody is charged twice.
+</Accordion>
+<Accordion id="faq-deleted-bill" title="I deleted an auto-generated bill and it came back">
+Leaseting re-creates missing bills. To cancel a charge, don't delete it. Set its amount to zero, or record a waiver, instead.
+</Accordion>
+<Accordion id="faq-reminders" title="Do tenants get reminded to pay?">
+Yes. When SMS is set up, tenants get a text before the due date, and another if the due date passes. It happens automatically, with nothing for you to do.
+</Accordion>
+<Accordion id="faq-scan-accuracy" title="How accurate is the photo scan?">
+It's a helper, not the source of truth. It fills in fields from the bill to save you typing, so always check the numbers before you save.
+</Accordion>
+</Accordions>

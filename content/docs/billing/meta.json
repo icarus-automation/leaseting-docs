@@ -1,0 +1,6 @@
+{
+  "title": "Billing",
+  "description": "Charging tenants for rent, utilities and other bills.",
+  "icon": "Wallet",
+  "defaultOpen": true
+}

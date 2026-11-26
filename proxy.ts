@@ -1,20 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { isMarkdownPreferred, rewritePath } from 'fumadocs-core/negotiation';
-import { docsRoute } from '@/lib/shared';
+import { isMarkdownPreferred } from 'fumadocs-core/negotiation';
 
-const { rewrite: rewriteDocs } = rewritePath(
-  `${docsRoute}{/*path}`,
-  `/llms.mdx${docsRoute}{/*path}.md`,
-);
-
+/**
+ * Agents that ask for Markdown (`Accept: text/markdown`) on an article URL get its `.md` version.
+ * Paths that aren't articles fall through to a 404 from the Markdown route.
+ */
 export default function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  // files like `/docs/page.md` are served by the rewrites of the Next.js config
-  const result =
-    isMarkdownPreferred(request) && !/\.(md|txt)$/.test(pathname) && rewriteDocs(pathname);
 
-  if (result) {
-    return NextResponse.rewrite(new URL(result, request.nextUrl), {
+  if (isMarkdownPreferred(request)) {
+    // `<article>.md` is served by the rewrite in next.config.mjs
+    return NextResponse.rewrite(new URL(`${pathname}.md`, request.nextUrl), {
       // this URL has two representations, selected by `Accept`
       headers: { Vary: 'Accept' },
     });
@@ -22,3 +18,8 @@ export default function proxy(request: NextRequest) {
 
   return NextResponse.next();
 }
+
+export const config = {
+  // articles only: not the home page, files with an extension, or the app's own routes
+  matcher: ['/((?!api/|og/|llms\\.mdx/|_next/)[^.]+)'],
+};

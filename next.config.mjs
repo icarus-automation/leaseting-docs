@@ -8,12 +8,9 @@ const config = {
   async rewrites() {
     return [
       {
-        source: '/docs/:path*.md',
-        destination: '/llms.mdx/docs/:path*.md',
-      },
-      {
-        source: '/docs/:path*.txt',
-        destination: '/llms.mdx/docs/:path*.txt',
+        // the Markdown version of an article, like /billing/utility-billing.md
+        source: '/:path*.md',
+        destination: '/llms.mdx/:path*.md',
       },
     ];
   },
