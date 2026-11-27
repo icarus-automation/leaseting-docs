@@ -1,7 +1,6 @@
 ---
 title: Bill utilities from meter readings
 description: Bill tenants for electricity and water each month. Type the meter readings, set the rate, and Leaseting creates the bills.
-sidebarTitle: Utility bills
 icon: Zap
 ---
 
@@ -11,14 +10,14 @@ Every month, each tenant owes their share of the building's electricity (Meralco
 
 | Use | When | Where to find it |
 | --- | --- | --- |
-| **Utility run** | Your normal monthly billing. Bills a whole property at once. | **Bills** → **Billing tools** → **Utility run** |
+| **Utility run** | Your normal monthly billing. Bills a whole property at once. | **Bills** → **Generate** → **Utility run** |
 | **New bill** | One unit only, such as a late reading or a correction. | **Bills** → **New bill** |
 
 Each bill is due on the tenant's own due day, for the amount Leaseting worked out. When SMS is set up, payment reminders go out automatically.
 
 ## Bill a whole property this month [#monthly-run]
 
-This is the normal monthly routine. Go to **Bills**, open **Billing tools** and choose **Utility run**. Do one run per property and utility.
+This is the normal monthly routine. Go to **Bills**, open **Generate** and choose **Utility run**. Do one run per property and utility.
 
 <Steps>
 <Step>
@@ -45,7 +44,7 @@ This is the normal monthly routine. Go to **Bills**, open **Billing tools** and 
 Click **Scan bill photo** and take a photo of the Meralco or Maynilad bill. Leaseting reads the rate, totals and dates and fills them in. Always check the numbers before you create the bills. The photo is sent to an AI service to be read.
 </Callout>
 
-Running the same month again is safe. Units already billed are skipped, so nobody is charged twice. Rows with no present reading are skipped too.
+Running the same month again is safe. Units already billed are skipped, so nobody is charged twice. Rows that say **Needs reading** are left out too.
 
 ## Bill one unit [#single-bill]
 
@@ -59,11 +58,32 @@ For a one-off, like a late reading or a correction, use **Bills** → **New bill
 **Tick Compute from meter reading.** The previous reading and the rate carry over from the unit's last bill.
 </Step>
 <Step>
-**Type the present reading.** The amount is worked out as you type, so you never enter the peso amount yourself. Then click **Create bill**.
+**Type the present reading.** The amount is worked out as you type, so you never enter the peso amount yourself.
+</Step>
+<Step>
+**Set the admin fee and taxes, if any.** Set **Apply taxes to** the same way you do on the utility run. See [Admin fee, VAT and withholding tax](#extras). Then click **Create bill**.
 </Step>
 </Steps>
 
 It uses the same formulas as the utility run, one bill at a time.
+
+### What an itemized bill looks like [#itemized-bill]
+
+Every utility bill lists its charges line by line. The lines are the same on the bill in Leaseting, in the Residence Care app, and on the statement of account (SOA). A line that comes to zero is left out.
+
+For example, Unit 101 used 70 kWh at ₱13.00. The bill has a 10% admin fee, 12% VAT and 2% withholding tax, with taxes applied to the whole charge:
+
+| Line | Amount | How it's worked out |
+| --- | ---: | --- |
+| Subtotal | ₱910.00 | 70 kWh × ₱13.00 |
+| Admin fee | ₱91.00 | 10% of ₱910.00 |
+| VAT (12%) | ₱120.12 | 12% of ₱1,001.00, the subtotal plus the admin fee |
+| Withholding (2%) | -₱20.02 | 2% of ₱1,001.00, taken off |
+| **Total** | **₱1,101.10** | What the tenant pays |
+
+With taxes applied to the admin fee only, both are worked out on ₱91.00: VAT is ₱10.92, withholding is ₱1.82, and the total is ₱1,010.10. With no admin fee, VAT or withholding, the bill shows only **Subtotal** and **Total**.
+
+Each bill keeps the amounts it was created with. Changing the rate or the taxes later never changes a bill you've already made.
 
 ## How meter readings carry over [#readings]
 
@@ -76,7 +96,7 @@ This month's **Present** becomes next month's **Previous** automatically, so you
 For example, Unit 101's June bill has a present reading of **520**. When you bill July, **Previous** already shows 520. You type **590** as the present reading, and the unit is billed for **70**.
 
 <Callout title="Billing a property for the first time?">
-There's no earlier bill to carry from, so **Previous** shows 0. Type each meter's real previous and present readings once. From next month, **Previous** fills itself in.
+There's no earlier bill to carry from, so **Previous** is blank. Type each meter's real previous and present readings once. From next month, **Previous** fills itself in.
 </Callout>
 
 ## Choose how to price it [#rates]
@@ -106,25 +126,17 @@ The utility run always opens on **From total bill**. Switch to a rate per unit o
 
 ## Admin fee, VAT and withholding tax [#extras]
 
-These are three optional percentages. All of them start at **0**, so leave them alone unless they apply to you. Each one is worked out on the usage charge.
+These are three optional percentages. All of them start at **0**, so leave them alone unless they apply to you.
 
-- **Admin fee**: your handling charge, added on top. It's on the main form, next to the rate.
-- **VAT**: sales tax, added on top. Most residential sub-meters leave it at 0.
-- **Withholding tax**: taken off the charge. Leave it at 0 unless you withhold.
+- **Admin fee**: your handling charge, a percentage of the usage charge, added on top. It's on the main form, next to the rate.
+- **VAT**: only if you're VAT-registered. This is your own VAT, added on top. The provider's VAT is already in the bill total, so don't add it again.
+- **Withholding tax**: only if the tenant withholds, usually a company. It's taken off what the tenant pays you.
 
-VAT and withholding tax are hidden under **Taxes (VAT and withholding), optional**. Click it to show them.
+If neither applies, leave both at 0. They're hidden under **Taxes (VAT and withholding), optional**. Click it to show them.
 
-Here's a worked example: 70 kWh at ₱13.00, with a 10% admin fee, 12% VAT and 2% withholding tax.
+**Apply taxes to** sets what both VAT and withholding are charged on: the **Whole charge** (the usage plus the admin fee, the default) or the **Admin fee only**. The utility run and **New bill** both have it. Confirm which one is right for you with your accountant before your first run.
 
-| Charge | Amount |
-| --- | ---: |
-| Usage charge (70 kWh × ₱13.00) | ₱910.00 |
-| Plus admin fee, 10% | ₱91.00 |
-| Plus VAT, 12% | ₱109.20 |
-| Minus withholding tax, 2% | ₱18.20 |
-| **Tenant pays** | **₱1,092.00** |
-
-With all three at 0%, the tenant pays just the ₱910.00 usage charge.
+See [what an itemized bill looks like](#itemized-bill) for both choices worked out. With all three at 0%, the tenant pays just the usage charge.
 
 ## The three dates [#dates]
 
@@ -132,7 +144,7 @@ A utility bill has three dates. They're easy to mix up, because each one answers
 
 | Date | What it means |
 | --- | --- |
-| **Period from → to** | The days the usage covers, for example Jun 18 → Jul 18. **Period to** is the day you read the meters. Both are printed on the tenant's receipt. |
+| **Period from → to** | The days the usage covers, for example Jun 18 → Jul 18. **Period to** is the day you read the meters. Both are printed on the tenant's bill and SOA. |
 | **Billing month** | The month the bill belongs to. It starts on this month. You can go back one month, but not forward. |
 | **Due date** | When the tenant must pay. It's set to the tenant's own due day, the same as rent. |
 
@@ -141,17 +153,20 @@ On the utility run, the period dates are filled in for you and tucked under **Bi
 ## Common mistakes and questions [#faq]
 
 <Accordions>
-<Accordion id="faq-skipped" title='A row says "skipped". Why?'>
-Its present reading is blank, or the unit was already billed for this month. Skipped rows are never charged. To include a row, type its present reading.
+<Accordion id="faq-skipped" title='A row says "Needs reading". Why?'>
+Its present reading is blank. Rows that need a reading are never charged. To include a row, type its present reading. If a row shows a warning instead, such as **No previous reading** or **Set a rate first**, fix that and the amount appears. A unit already billed for this month is skipped when you create the bills, so nobody is charged twice.
 </Accordion>
 <Accordion id="faq-missing-unit" title="A unit is missing from the run">
 Its lease is set so that Leaseting doesn't bill that utility, for example because the tenant pays the provider directly. Open the lease and change it under **Utility billing**. New leases take the property's defaults, which you set when you edit the property. Until the lease bills that utility, a single bill for it is refused too.
 </Accordion>
-<Accordion id="faq-below-previous" title='It warns "below previous"'>
+<Accordion id="faq-below-previous" title='It warns "Lower than previous"'>
 The present reading is smaller than the previous one, and a meter can't count down. Check the number again. It's almost always a typo.
 </Accordion>
-<Accordion id="faq-previous-zero" title="Previous shows 0">
+<Accordion id="faq-previous-zero" title='Previous is blank, or it warns "No previous reading"'>
 There's no earlier bill to carry from, so this is the first time the unit is billed for this utility. Type the real previous reading once. Next month it carries over on its own.
+</Accordion>
+<Accordion id="faq-provider-vat" title="The provider's bill already includes VAT. Do I add it again?">
+No. The provider's VAT is already inside the bill total you enter, so it's shared out with the rest of the bill. **VAT %** is only for your own VAT, if you're VAT-registered. If you're not, leave it at 0.
 </Accordion>
 <Accordion id="faq-ran-twice" title="I ran the same month twice by accident">
 No harm done. Units already billed are skipped, so nobody is charged twice.

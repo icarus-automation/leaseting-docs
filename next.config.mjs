@@ -8,7 +8,7 @@ const config = {
   async rewrites() {
     return [
       {
-        // the Markdown version of an article, like /billing/utility-billing.md
+        // the Markdown version of an article, like /billing/utility-bills.md
         source: '/:path*.md',
         destination: '/llms.mdx/:path*.md',
       },
